@@ -1,0 +1,6 @@
+Metric,K-Means,Isolation Forest
+Accuracy,0.422,0.288
+Precision,0.2831,0.243
+Recall,0.9836,0.9875
+F1-Score,0.4396,0.39
+ROC-AUC,0.787,0.7121
