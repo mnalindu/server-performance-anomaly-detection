@@ -48,26 +48,9 @@ Anomaly scores are used to identify potential abnormal server behaviour.
 
 ## Model Evaluation
 
-Both models were evaluated using the same final testing dataset containing 61,488 records.
+`notebooks/07_model_evaluation.ipynb` evaluates both models on the same final test records and saves the comparison under `results/`. Thresholds are selected from unlabeled chronological validation scores using the same 99th-percentile rule for both models. Final test labels are used only for evaluation, never for threshold selection.
 
-| Metric | K-Means | Isolation Forest |
-|---|---:|---:|
-| Accuracy | 0.3033 | 0.3053 |
-| Precision | 0.2481 | 0.2451 |
-| Recall | 0.9963 | 0.9682 |
-| F1-Score | 0.3973 | 0.3912 |
-| F2-Score | 0.6215 | 0.6089 |
-| ROC-AUC | 0.7870 | 0.7651 |
-
-### Evaluation Summary
-
-K-Means achieved a higher Recall, F1-Score, F2-Score and ROC-AUC compared with Isolation Forest.
-
-Isolation Forest achieved slightly higher Accuracy.
-
-Based on the current evaluation results, K-Means performed slightly better overall, particularly when considering anomaly detection recall and F2-score.
-
-However, both models produced a high number of false positives, which is an important limitation to consider.
+The checked-in CSV files in `results/` are outputs from an earlier run. They were not re-generated during the current integration check because this checkout does not contain the ignored dataset files required by the notebook. Do not treat those historical values as the latest verified evaluation until the source data is restored and Run All completes successfully.
 
 ## Project Structure
 
@@ -169,13 +152,11 @@ This project demonstrates the application of unsupervised machine learning techn
 
 Both K-Means and Isolation Forest were implemented, evaluated and compared.
 
-Based on the current experimental results, K-Means achieved better overall anomaly detection performance according to F2-Score and ROC-AUC.
-
-Further improvements can focus on reducing false positives and improving model reliability.
+A current performance conclusion requires the original dataset files to be restored and the evaluation notebook to be executed end to end.
 
 ## Dataset
 
-Dataset source and download instructions should be provided in `data/README.md`.
+The preprocessing workflow expects `data/raw/train.csv`, `data/raw/test.csv`, and `data/raw/test_label.csv`, and produces `data/processed/train_imputed.csv`, `data/processed/test_imputed.csv`, and `data/processed/test_labels.csv`. These directories are intentionally ignored by Git; restore the original dataset locally before running the evaluation notebook. No substitute or synthetic data should be generated.
 
 ## Team Contributions
 
